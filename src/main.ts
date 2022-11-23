@@ -17,7 +17,7 @@ async function bootstrap() {
   const adapter = new WebsocketAdapter(app);
   app.useWebSocketAdapter(adapter);
   app.setGlobalPrefix('api');
-  app.enableCors({ origin: ['http://localhost:3000'], credentials: true });
+  app.enableCors({ origin: ['*'], credentials: true });
   app.useGlobalPipes(new ValidationPipe());
   app.set('trust proxy', 'loopback');
   app.use(
