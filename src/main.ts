@@ -12,7 +12,7 @@ import { NestExpressApplication } from '@nestjs/platform-express';
 
 async function bootstrap() {
   const { PORT, COOKIE_SECRET } = process.env;
-  const app = await NestFactory.create<NestExpressApplication>(AppModule);
+  const app = await NestFactory.create<NestExpressApplication>(AppModule, { cors: true });
   const sessionRepository = getRepository(Session);
   const adapter = new WebsocketAdapter(app);
   app.useWebSocketAdapter(adapter);
@@ -35,7 +35,7 @@ async function bootstrap() {
 
   app.use(passport.initialize());
   app.use(passport.session());
-
+  app.enableCors();
   try {
     await app.listen(PORT, () => {
       console.log(`Running on Port ${PORT}`);

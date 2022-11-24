@@ -36,7 +36,7 @@ import { IGatewaySessionManager } from './gateway.session';
 
 @WebSocketGateway({
   cors: {
-    origin: ['http://localhost:3000'],
+    origin: ['*'],
     credentials: true,
   },
   pingInterval: 10000,
